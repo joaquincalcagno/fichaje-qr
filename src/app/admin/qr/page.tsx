@@ -71,30 +71,30 @@ export default function QrPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Puntos de Fichaje (QR)</h1>
+      <h1 className="text-2xl font-bold mb-6 text-brand-yellow">Puntos de Fichaje (QR)</h1>
 
-      <form onSubmit={addPoint} className="bg-white p-6 rounded-xl shadow-sm border mb-6 flex gap-4 items-end">
+      <form onSubmit={addPoint} className="bg-brand-gray p-6 rounded-xl border border-gray-700 mb-6 flex gap-4 items-end">
         <div className="flex-1">
-          <label className="block text-sm text-gray-600 mb-1">Nombre del punto de fichaje</label>
+          <label className="block text-sm text-gray-400 mb-1">Nombre del punto de fichaje</label>
           <input
             placeholder="Ej: Entrada principal, Oficina 2, Depósito..."
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            className="border rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             required
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition text-sm disabled:opacity-50"
+          className="bg-brand-yellow text-black px-6 py-2 rounded-lg hover:brightness-110 transition text-sm font-semibold disabled:opacity-50"
         >
           {loading ? "Creando..." : "Crear punto"}
         </button>
       </form>
 
       {points.length === 0 ? (
-        <p className="text-gray-400 text-center py-8">
+        <p className="text-gray-500 text-center py-8">
           No hay puntos de fichaje. Creá uno para generar un QR.
         </p>
       ) : (
@@ -102,22 +102,22 @@ export default function QrPage() {
           {points.map((point) => {
             const qrUrl = `${appUrl}/scan?code=${point.code}`;
             return (
-              <div key={point.id} className="bg-white p-6 rounded-xl shadow-sm border text-center">
-                <h3 className="font-semibold text-lg mb-4">{point.name}</h3>
-                <div className="inline-block p-4 bg-white border rounded-xl mb-4">
+              <div key={point.id} className="bg-brand-gray p-6 rounded-xl border border-gray-700 text-center">
+                <h3 className="font-semibold text-lg mb-4 text-brand-yellow">{point.name}</h3>
+                <div className="inline-block p-4 bg-white rounded-xl mb-4">
                   <QRCodeSVG id={`qr-${point.name}`} value={qrUrl} size={200} />
                 </div>
-                <p className="text-xs text-gray-400 mb-4 break-all">{qrUrl}</p>
+                <p className="text-xs text-gray-500 mb-4 break-all">{qrUrl}</p>
                 <div className="flex gap-2 justify-center">
                   <button
                     onClick={() => printQr(point.name)}
-                    className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm"
+                    className="bg-brand-yellow text-black px-4 py-2 rounded-lg hover:brightness-110 transition text-sm font-semibold"
                   >
                     Imprimir QR
                   </button>
                   <button
                     onClick={() => deletePoint(point.id)}
-                    className="bg-red-100 text-red-600 px-4 py-2 rounded-lg hover:bg-red-200 transition text-sm"
+                    className="bg-red-900/40 text-red-400 px-4 py-2 rounded-lg hover:bg-red-900/60 transition text-sm"
                   >
                     Eliminar
                   </button>

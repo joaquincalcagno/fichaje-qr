@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function ScanPage() {
   const [dni, setDni] = useState("");
@@ -44,10 +45,13 @@ export default function ScanPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-gray-50">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-center mb-2">Fichaje</h1>
-        <p className="text-gray-500 text-center mb-6">Ingresá tu DNI para registrar entrada o salida</p>
+    <div className="flex flex-col items-center justify-center min-h-screen p-8 bg-brand-dark">
+      <div className="bg-brand-gray p-8 rounded-2xl shadow-lg w-full max-w-sm border border-gray-700">
+        <div className="flex justify-center mb-6">
+          <Image src="/logo.png" alt="Pinturerías Calcagno" width={200} height={70} />
+        </div>
+        <h1 className="text-2xl font-bold text-center mb-2 text-brand-yellow">Fichaje</h1>
+        <p className="text-gray-400 text-center mb-6">Ingresá tu DNI para registrar entrada o salida</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
@@ -55,25 +59,25 @@ export default function ScanPage() {
             placeholder="DNI"
             value={dni}
             onChange={(e) => setDni(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-3 text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-3 text-lg text-center focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             required
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="bg-brand-yellow text-black py-3 rounded-lg text-lg font-semibold hover:brightness-110 transition disabled:opacity-50"
           >
             {status === "loading" ? "Registrando..." : "Fichar"}
           </button>
         </form>
 
         {status === "success" && (
-          <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center">
+          <div className="mt-4 p-4 bg-green-900/40 border border-green-700 rounded-lg text-green-400 text-center">
             {message}
           </div>
         )}
         {status === "error" && (
-          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-center">
+          <div className="mt-4 p-4 bg-red-900/40 border border-red-700 rounded-lg text-red-400 text-center">
             {message}
           </div>
         )}

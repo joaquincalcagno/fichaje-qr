@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -28,9 +29,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-center mb-6">Admin - Iniciar Sesión</h1>
+    <div className="flex items-center justify-center min-h-screen bg-brand-dark">
+      <div className="bg-brand-gray p-8 rounded-2xl shadow-lg w-full max-w-sm border border-gray-700">
+        <div className="flex justify-center mb-6">
+          <Image src="/logo.png" alt="Pinturerías Calcagno" width={200} height={70} />
+        </div>
+        <h1 className="text-2xl font-bold text-center mb-6 text-brand-yellow">Admin - Iniciar Sesión</h1>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
@@ -38,7 +42,7 @@ export default function LoginPage() {
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             required
           />
           <input
@@ -46,20 +50,20 @@ export default function LoginPage() {
             placeholder="Contraseña"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             required
           />
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
+            className="bg-brand-yellow text-black py-3 rounded-lg font-semibold hover:brightness-110 transition disabled:opacity-50"
           >
             {loading ? "Ingresando..." : "Ingresar"}
           </button>
         </form>
 
         {error && (
-          <p className="mt-4 text-red-600 text-center text-sm">{error}</p>
+          <p className="mt-4 text-red-400 text-center text-sm">{error}</p>
         )}
       </div>
     </div>

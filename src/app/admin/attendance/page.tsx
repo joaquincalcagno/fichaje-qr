@@ -31,19 +31,19 @@ export default function AttendancePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Historial de Asistencia</h1>
+      <h1 className="text-2xl font-bold mb-6 text-brand-yellow">Historial de Asistencia</h1>
 
       <div className="flex gap-4 mb-6">
         <input
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-brand-gray border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
         />
         <select
           value={employeeId}
           onChange={(e) => setEmployeeId(e.target.value)}
-          className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-brand-gray border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
         >
           <option value="">Todos los empleados</option>
           {employees.map((emp) => (
@@ -54,35 +54,35 @@ export default function AttendancePage() {
         </select>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+      <div className="bg-brand-gray rounded-xl border border-gray-700 overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b">
+          <thead className="bg-brand-dark border-b border-gray-700">
             <tr>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Empleado</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">DNI</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Tipo</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Fecha y hora</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Empleado</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">DNI</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Tipo</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Fecha y hora</th>
             </tr>
           </thead>
           <tbody>
             {records.map((record) => {
               const emp = record.employee as { name: string; dni: string } | undefined;
               return (
-                <tr key={record.id} className="border-b last:border-0">
-                  <td className="px-4 py-3 font-medium">{emp?.name || "—"}</td>
-                  <td className="px-4 py-3 text-gray-500">{emp?.dni || "—"}</td>
+                <tr key={record.id} className="border-b border-gray-700 last:border-0">
+                  <td className="px-4 py-3 font-medium text-gray-200">{emp?.name || "—"}</td>
+                  <td className="px-4 py-3 text-gray-400">{emp?.dni || "—"}</td>
                   <td className="px-4 py-3">
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-medium ${
                         record.type === "entry"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-red-100 text-red-700"
+                          ? "bg-green-900/40 text-green-400"
+                          : "bg-red-900/40 text-red-400"
                       }`}
                     >
                       {record.type === "entry" ? "Entrada" : "Salida"}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-gray-500">
+                  <td className="px-4 py-3 text-gray-400">
                     {new Date(record.timestamp).toLocaleString("es-AR")}
                   </td>
                 </tr>
@@ -90,7 +90,7 @@ export default function AttendancePage() {
             })}
             {records.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-gray-400">
+                <td colSpan={4} className="px-4 py-8 text-center text-gray-500">
                   No hay registros para la fecha seleccionada
                 </td>
               </tr>

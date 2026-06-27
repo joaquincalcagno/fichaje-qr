@@ -71,34 +71,34 @@ export default function EmployeesPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Empleados</h1>
+        <h1 className="text-2xl font-bold text-brand-yellow">Empleados</h1>
         <button
           onClick={() => {
             resetForm();
             setShowForm(!showForm);
           }}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm"
+          className="bg-brand-yellow text-black px-4 py-2 rounded-lg hover:brightness-110 transition text-sm font-semibold"
         >
           {showForm ? "Cancelar" : "Agregar empleado"}
         </button>
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-sm border mb-6">
-          <h2 className="font-semibold mb-4">{editing ? "Editar empleado" : "Nuevo empleado"}</h2>
+        <form onSubmit={handleSubmit} className="bg-brand-gray p-6 rounded-xl border border-gray-700 mb-6">
+          <h2 className="font-semibold mb-4 text-gray-200">{editing ? "Editar empleado" : "Nuevo empleado"}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               placeholder="Nombre completo *"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
               required
             />
             <input
               placeholder="DNI *"
               value={form.dni}
               onChange={(e) => setForm({ ...form, dni: e.target.value })}
-              className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
               required
             />
             <input
@@ -106,48 +106,48 @@ export default function EmployeesPage() {
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             />
             <input
               placeholder="Cargo"
               value={form.position}
               onChange={(e) => setForm({ ...form, position: e.target.value })}
-              className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="bg-brand-dark border border-gray-600 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-yellow"
             />
           </div>
-          {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+          {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
           <button
             type="submit"
-            className="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition text-sm"
+            className="mt-4 bg-brand-yellow text-black px-6 py-2 rounded-lg hover:brightness-110 transition text-sm font-semibold"
           >
             {editing ? "Guardar cambios" : "Crear empleado"}
           </button>
         </form>
       )}
 
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+      <div className="bg-brand-gray rounded-xl border border-gray-700 overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b">
+          <thead className="bg-brand-dark border-b border-gray-700">
             <tr>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Nombre</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">DNI</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Email</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Cargo</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Estado</th>
-              <th className="text-left px-4 py-3 font-medium text-gray-600">Acciones</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Nombre</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">DNI</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Email</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Cargo</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Estado</th>
+              <th className="text-left px-4 py-3 font-medium text-gray-400">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {employees.map((emp) => (
-              <tr key={emp.id} className="border-b last:border-0">
-                <td className="px-4 py-3 font-medium">{emp.name}</td>
-                <td className="px-4 py-3">{emp.dni}</td>
-                <td className="px-4 py-3 text-gray-500">{emp.email || "—"}</td>
-                <td className="px-4 py-3 text-gray-500">{emp.position || "—"}</td>
+              <tr key={emp.id} className="border-b border-gray-700 last:border-0">
+                <td className="px-4 py-3 font-medium text-gray-200">{emp.name}</td>
+                <td className="px-4 py-3 text-gray-300">{emp.dni}</td>
+                <td className="px-4 py-3 text-gray-400">{emp.email || "—"}</td>
+                <td className="px-4 py-3 text-gray-400">{emp.position || "—"}</td>
                 <td className="px-4 py-3">
                   <span
                     className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      emp.active ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
+                      emp.active ? "bg-green-900/40 text-green-400" : "bg-gray-800 text-gray-500"
                     }`}
                   >
                     {emp.active ? "Activo" : "Inactivo"}
@@ -156,13 +156,13 @@ export default function EmployeesPage() {
                 <td className="px-4 py-3 flex gap-2">
                   <button
                     onClick={() => startEdit(emp)}
-                    className="text-blue-600 hover:underline text-xs"
+                    className="text-brand-yellow hover:underline text-xs"
                   >
                     Editar
                   </button>
                   <button
                     onClick={() => handleDelete(emp.id)}
-                    className="text-red-600 hover:underline text-xs"
+                    className="text-red-400 hover:underline text-xs"
                   >
                     Eliminar
                   </button>
@@ -171,7 +171,7 @@ export default function EmployeesPage() {
             ))}
             {employees.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-8 text-center text-gray-400">
+                <td colSpan={6} className="px-4 py-8 text-center text-gray-500">
                   No hay empleados registrados
                 </td>
               </tr>

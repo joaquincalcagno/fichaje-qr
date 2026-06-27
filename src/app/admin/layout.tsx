@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -34,8 +35,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   if (checking) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500">Cargando...</p>
+      <div className="flex items-center justify-center min-h-screen bg-brand-dark">
+        <p className="text-gray-400">Cargando...</p>
       </div>
     );
   }
@@ -55,20 +56,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm border-b">
+    <div className="min-h-screen bg-brand-dark">
+      <nav className="bg-brand-gray shadow-lg border-b border-gray-700">
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-16">
           <div className="flex items-center gap-6">
-            <span className="font-bold text-lg">Fichaje QR</span>
+            <Image src="/logo.png" alt="Pinturerías Calcagno" width={140} height={50} />
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`text-sm ${
                   pathname === link.href
-                    ? "text-blue-600 font-semibold"
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
+                    ? "text-brand-yellow font-semibold"
+                    : "text-gray-400 hover:text-brand-yellow"
+                } transition`}
               >
                 {link.label}
               </Link>
@@ -76,7 +77,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <button
             onClick={handleLogout}
-            className="text-sm text-gray-500 hover:text-red-600 transition"
+            className="text-sm text-gray-500 hover:text-red-400 transition"
           >
             Cerrar sesión
           </button>
